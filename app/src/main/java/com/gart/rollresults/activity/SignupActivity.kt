@@ -24,16 +24,18 @@ class SignupActivity : AppCompatActivity() {
         cardView.background = drawable
 
         // OnClickListener for Register TextView
-        val login_link = findViewById<TextView>(R.id.login)
-        login_link.setOnClickListener {
+        val loginlink = findViewById<TextView>(R.id.login)
+        loginlink.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         // OnClickListener for Login Button
-        val sign_up = findViewById<Button>(R.id.sign_up)
-        sign_up.setOnClickListener{
-
+        val signup = findViewById<Button>(R.id.sign_up)
+        signup.setOnClickListener{
+            val intent2 = Intent(this,ProfileSetupActivity::class.java)
+            startActivity(intent2)
         }
+
     }
 }
