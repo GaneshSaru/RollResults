@@ -15,18 +15,26 @@
         android:theme="@style/Theme.RollResults"
         tools:targetApi="31">
         <activity
+            android:name=".activity.DashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ProfileSetupActivity"
             android:exported="false" />
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity> <!-- Signup Activity -Active -->
+            android:exported="false" >
+        </activity>
+
+        <!-- Signup Activity -Active -->
         <activity
             android:name=".activity.SignupActivity"
-            android:exported="true"></activity> <!-- Login Activity -->
+            android:exported="true" />
+        <!-- Login Activity -->
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true"></activity> <!-- Intro Activity -->
+            android:exported="true" />
+        <!-- Intro Activity -->
         <activity
             android:name=".activity.IntroActivity"
             android:exported="true">

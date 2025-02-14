@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gart.rollresults.R
+import android.content.Intent
 import android.widget.Toast
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
@@ -32,7 +33,7 @@ class ProfileSetupActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirerestore.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         val fullNameEditText: TextInputEditText = findViewById(R.id.fullName)
         val examRollNoEditText: TextInputEditText = findViewById(R.id.examRollno)
@@ -45,17 +46,17 @@ class ProfileSetupActivity : AppCompatActivity() {
 
         regCompleteButton.setOnClickListener {
             val fullName = fullNameEditText.text.toString().trim()
-            val examRollNo = examRollNoEditText.text.toString().trim()
+            val examRollno = examRollNoEditText.text.toString().trim()
             val college = collegeEditText.text.toString().trim()
             val program = programEditText.text.toString().trim()
 
-            if (fullName.isEmpty() || examRollNo.isEmpty() || college.isEmpty() || program.isEmpty()) {
+            if (fullName.isEmpty() || examRollno.isEmpty() || college.isEmpty() || program.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             // Create Firebase account and store user data
-            createAccount (email, password, fullName, examRollNo, college, program)
+            createAccount (email, password, fullName, examRollno, college, program)
         }
     }
 
@@ -66,7 +67,7 @@ class ProfileSetupActivity : AppCompatActivity() {
                     val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
                     val userMap = hashMapOf(
                         "fullName" to fullName,
-                        "examRollno" to examRollno
+                        "examRollno" to examRollno,
                         "college" to college,
                         "program" to program,
                         "email" to email
@@ -89,5 +90,6 @@ class ProfileSetupActivity : AppCompatActivity() {
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
             }
+
     }
 }
