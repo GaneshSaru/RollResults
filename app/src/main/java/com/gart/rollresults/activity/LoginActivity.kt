@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         cardView.background = drawable
 
         // OnClickListener for Register TextView
-        val register_link = findViewById<TextView>(R.id.register)
-        register_link.setOnClickListener {
+        val registerlink = findViewById<TextView>(R.id.register)
+        registerlink.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
