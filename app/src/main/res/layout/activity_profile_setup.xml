@@ -177,11 +177,13 @@
                 android:fontFamily="@font/quicksandmedium"
                 android:gravity="center"
                 android:paddingVertical="10dp"
-                android:text="@string/complete_setup"
+                android:text="@string/complete_registration"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:cornerRadius="30dp" />
+
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
