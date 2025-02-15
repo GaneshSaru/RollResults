@@ -18,4 +18,13 @@
     <string name="complete_registration">Complete Registration</string>
 
 
+    <!-- Other string resources -->
+    <string-array name="semesters">
+        <item>1st Semester</item>
+        <item>2nd Semester</item>
+        <item>3rd Semester</item>
+        <item>4th Semester</item>
+        <item>5th Semester</item>
+    </string-array>
+
 </resources>

@@ -64,4 +64,9 @@ dependencies {
     //Library for GIF Image view
     implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.27")
 
+    //denpendencies added to interact python backend
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
 }

@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -58,12 +59,77 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     // Check if user exists for login
-    fun authenticateUser(email: String, password: String): Boolean {
+    fun authenticateUser(email: String, password: String): Int {
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_USERS WHERE $COLUMN_EMAIL = ? AND $COLUMN_PASSWORD = ?"
         val cursor = db.rawQuery(query, arrayOf(email, password))
-        val exists = cursor.count > 0
+
+        var userId = -1  // Default value if no user is found
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(0) // Retrieve unique user ID
+        }
+
+        Log.d("DEBUG", "authenticateUser result: $userId") // Debugging output
+
         cursor.close()
-        return exists
+        return userId // Return true if user is found, false otherwise
+    }
+
+    // Get user details by user ID
+    fun getUserDetails(userId: Int): User? {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_USERS WHERE $COLUMN_ID = ?", arrayOf(userId.toString()))
+        var user: User? = null
+
+        if (cursor.moveToFirst()) {
+            user = User(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                fullName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FULL_NAME)),
+                email = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)),
+                examRollNo = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXAM_ROLL_NO)),
+                college = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_COLLEGE)),
+                program = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PROGRAM))
+            )
+        }
+
+        cursor.close()
+        return user
     }
 }
+
+data class User(
+    val id: Int,
+    val fullName: String,
+    val email: String,
+    val examRollNo: String,
+    val college: String,
+    val program: String
+)
+
+   /*
+    // **Get user details by user ID**
+    fun getUserId(email: String, password: String): Int {
+        val db = readableDatabase
+        val query = "SELECT id FROM users WHERE email = ? AND password = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, password))
+        var userId = -1
+
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+        }
+
+        cursor.close()
+        return userId
+    }
+}
+data class User(
+    val id: Int,
+    val fullName: String,
+    val email: String,
+    val examRollNo: String,
+    val college: String,
+    val program: String
+)
+
+
+    */
