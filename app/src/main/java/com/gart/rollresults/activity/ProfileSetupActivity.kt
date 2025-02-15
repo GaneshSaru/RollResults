@@ -5,20 +5,17 @@ import android.widget.FrameLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gart.rollresults.R
 import android.content.Intent
 import android.widget.Toast
 import android.widget.Button
+import com.gart.rollresults.database.DatabaseHelper
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+
 
 class ProfileSetupActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +28,10 @@ class ProfileSetupActivity : AppCompatActivity() {
         val drawable = ContextCompat.getDrawable(this, R.drawable.rounded_top_corner)
         cardView.background = drawable
 
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        // Initilize db
+        dbHelper = DatabaseHelper(this)
 
+        // onClick Listener
         val fullNameEditText: TextInputEditText = findViewById(R.id.fullName)
         val examRollNoEditText: TextInputEditText = findViewById(R.id.examRollno)
         val collegeEditText: TextInputEditText = findViewById(R.id.college)
@@ -55,41 +52,14 @@ class ProfileSetupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Create Firebase account and store user data
-            createAccount (email, password, fullName, examRollno, college, program)
-        }
-    }
-
-    private fun createAccount(email: String, password: String, fullName: String, examRollno: String, college: String, program: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
-                    val userMap = hashMapOf(
-                        "fullName" to fullName,
-                        "examRollno" to examRollno,
-                        "college" to college,
-                        "program" to program,
-                        "email" to email
-                    )
-
-                    // Store user details in Firestore
-                    db.collection("users").document(userId).set(userMap)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Registration Complete!", Toast.LENGTH_SHORT).show()
-
-                            // Navigate to login Activity
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this,"Failed to save user data!", Toast.LENGTH_SHORT).show()
-                        }
-                } else {
-                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}",Toast.LENGTH_SHORT).show()
-                }
+            val success = dbHelper.insertUser(fullName, email, password, examRollno, college, program)
+            if (success) {
+                Toast.makeText(this, "Registration Complete!", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Registration failed!", Toast.LENGTH_SHORT).show()
             }
-
+        }
     }
 }

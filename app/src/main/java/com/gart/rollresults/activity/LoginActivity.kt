@@ -3,8 +3,6 @@ package com.gart.rollresults.activity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gart.rollresults.R
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -12,12 +10,11 @@ import androidx.core.content.ContextCompat
 import android.content.Intent
 import android.widget.Toast
 import android.widget.Button
+import com.gart.rollresults.database.DatabaseHelper
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +34,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Initialize DatabaseHelper
+        dbHelper = DatabaseHelper(this)
+
         // OnClickListener for Login Button
-
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
-
         val emailEditText: TextInputEditText = findViewById(R.id.email)
         val passwordEditText: TextInputEditText = findViewById(R.id.password)
         val loginButton: Button = findViewById(R.id.login)
@@ -59,9 +55,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email:String, password:String) {
-        auth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
+        val isUserValid = dbHelper.authenticateUser(email, password)
+
+                if (isUserValid) {
                     Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
 
                     // Navigate to Dashboard
@@ -69,8 +65,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish() // Close login activity
                 } else {
-                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Invalid email or password!", Toast.LENGTH_SHORT).show()
                 }
-        }
     }
 }

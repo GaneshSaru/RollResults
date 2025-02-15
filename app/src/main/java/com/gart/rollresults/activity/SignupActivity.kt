@@ -8,18 +8,15 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gart.rollresults.R
 import android.widget.Toast
-import android.text.TextUtils
-import com.google.firebase.auth.FirebaseAuth
+import com.gart.rollresults.database.DatabaseHelper
 import com.google.android.material.textfield.TextInputEditText
 
 
 class SignupActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,20 +36,19 @@ class SignupActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // initialize db
+        dbHelper = DatabaseHelper(this)
+
         // OnClickListener for Login Button
-
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
-
         val emailEditText: TextInputEditText = findViewById(R.id.email)
         val passwordEditText: TextInputEditText = findViewById(R.id.password)
         val confirmPasswordEditText: TextInputEditText = findViewById(R.id.confirmPassword)
         val signupButton: Button = findViewById(R.id.sign_up)
 
         signupButton.setOnClickListener{
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-            val confirmPassword = confirmPasswordEditText.text.toString()
+            val email = emailEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+            val confirmPassword = confirmPasswordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show()
@@ -60,7 +56,7 @@ class SignupActivity : AppCompatActivity() {
             }
 
             if (password == confirmPassword) {
-                // Naviaget to ProfileSetupActivity with email & password to complete registration
+                // Naviagte to ProfileSetupActivity with email & password to complete registration
                 val intent = Intent(this,ProfileSetupActivity::class.java)
                 intent.putExtra("email",email)
                 intent.putExtra("password", password)

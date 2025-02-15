@@ -64,14 +64,4 @@ dependencies {
     //Library for GIF Image view
     implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.27")
 
-    // Dependencies  for Firbase authentication
-
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
-    implementation ("com.google.firebase:firebase-firestore:24.0.0")
-
-    // Add the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-auth")
-
 }
