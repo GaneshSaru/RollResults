@@ -74,6 +74,7 @@
                 app:boxStrokeWidth="4dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/email"
@@ -86,7 +87,6 @@
                     android:textSize="18sp">
 
                 </com.google.android.material.textfield.TextInputEditText>
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -100,6 +100,7 @@
                 app:boxStrokeWidth="4dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/password"
@@ -126,6 +127,7 @@
                 app:boxStrokeWidth="4dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/password"

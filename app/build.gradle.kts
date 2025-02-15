@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
+
 }
 
 android {
@@ -45,6 +47,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -60,11 +63,5 @@ dependencies {
 
     //Library for GIF Image view
     implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.27")
-    /*
-    //Lottie Library
-    implementation ("com.airbnb.android:lottie-compose:6.5.0")
-    implementation("com.airbnb.android:lottie:6.5.0")
-    */
-
 
 }

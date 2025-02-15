@@ -1,19 +1,15 @@
  package com.gart.rollresults.activity
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gart.rollresults.R
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
-import android.os.Handler
-import android.os.Looper
-import android.content.Intent
 
-
-class IntroActivity : AppCompatActivity() {
+ class IntroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +23,6 @@ class IntroActivity : AppCompatActivity() {
             gifDrawable.loopCount = 1  // Play only once
             gifImageView.setImageDrawable(gifDrawable)
 
-            // Get the duration of the GIF animation
             val gifDuration = 5000  // 5000 milliseconds = 5secs
 
             // Delay transition to LoginActivity until the animation is finished
