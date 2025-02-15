@@ -16,4 +16,13 @@
     <string name="setup_description">Kindly provide your details to set up your account.</string>
     <string name="complete_setup">Complete Registration</string>
 
+    <!-- Other string resources -->
+    <string-array name="semesters">
+        <item>1st Semester</item>
+        <item>2nd Semester</item>
+        <item>3rd Semester</item>
+        <item>4th Semester</item>
+        <item>5th Semester</item>
+    </string-array>
+
 </resources>
