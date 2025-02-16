@@ -5,28 +5,29 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileSetupActivity"
-    android:background="@drawable/bg2">
+    android:background="@drawable/bg2"
+    tools:context=".activity.ProfileSetupActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="20dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:contentDescription="logo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"/>
-
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.cardview.widget.CardView
@@ -35,12 +36,12 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/guideline"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/rounded_top_corner">
+        android:background="@drawable/rounded_top_corner"
+        app:cardElevation="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="6dp"
             android:orientation="vertical"
             android:padding="30dp">
 
@@ -51,7 +52,7 @@
                 android:fontFamily="@font/quicksandmedium"
                 android:text="@string/profile_setup"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -62,17 +63,17 @@
                 android:fontFamily="@font/quicksandmedium"
                 android:text="@string/setup_description"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeWidth="4dp">
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxStrokeWidth="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fullName"
@@ -82,12 +83,10 @@
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/grey"
                     android:hint="Full Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="18sp">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,11 +94,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeWidth="4dp">
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxStrokeWidth="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/examRollno"
@@ -112,9 +111,7 @@
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="18sp">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,11 +119,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeWidth="4dp">
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxStrokeWidth="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/college"
@@ -136,12 +133,10 @@
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/grey"
                     android:hint="College"
-                    android:inputType="textLongMessage"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="18sp">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,11 +144,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeWidth="4dp">
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxStrokeWidth="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/program"
@@ -163,12 +158,10 @@
                     android:drawablePadding="10dp"
                     android:drawableTint="@color/grey"
                     android:hint="Program"
-                    android:inputType="textLongMessage"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="18sp">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="16sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,17 +169,18 @@
                 android:id="@+id/regComplete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="50dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/blueVoilet"
                 android:fontFamily="@font/quicksandmedium"
                 android:gravity="center"
                 android:paddingVertical="10dp"
-                android:text="@string/complete_registration"
+                android:layout_marginHorizontal="20dp"
+                android:text="@string/complete_setup"
                 android:textColor="@color/white"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:cornerRadius="30dp" />
-
+                app:cornerRadius="30dp"/>
 
         </LinearLayout>
 
