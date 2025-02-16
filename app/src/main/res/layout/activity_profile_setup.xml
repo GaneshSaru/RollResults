@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileSetupActivity"
-    android:background="@drawable/bg2">
+    android:background="@drawable/bg2"
+    tools:context=".activity.ProfileSetupActivity">
 
     <ImageView
         android:id="@+id/imageView"
